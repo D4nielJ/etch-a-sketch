@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Etch-A-Sketch</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fitno">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen"/>
+    </head>
+    <body>
+        <main>
+            <div class="title">
+                <h1>Etch-A-Sketch</h1>
+                <p class="subtitle">Have Fun!</p>
+            </div>
+            <div class="etch-container">
+                
+
+            </div>
+            <button class="btn reset">Reset grid</button>
+        </main>
+        <footer>
+            <p>Developed by:</p><a href="#" target="_blank">Daniel J</a>
+        </footer>
+        
+        
+
+    
+        <script>
+            // creating a grid for our game
+            const etchContainer = document.querySelector('.etch-container');
+            const gridSize = 20;
+
+            function createGrid() {
+                for (let i = 0; i < gridSize*gridSize; i++) {                    
+                    const square = document.createElement('div');
+                    square.classList.add('square');
+                    square.style.flex = `1 1 ${100/gridSize}%`;         
+                    etchContainer.appendChild(square);
+                }
+            }
+            
+            function setHeight() {
+                const squareHeight = document.querySelector('.square').offsetWidth;
+                squares = document.querySelectorAll('.square');
+                squares.forEach(element => {                   
+                   element.setAttribute('style', `height: ${squareHeight}px; flex: 1 1 ${100/gridSize}%;`);
+                });
+            }
+            
+
+            createGrid();
+            setHeight();
+
+        </script>
+    </body>
+</html>
