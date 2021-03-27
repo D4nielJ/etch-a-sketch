@@ -48,14 +48,13 @@ p {
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 3rem;
+    background: white;
 }
 
 .square {    
     border: thin solid #e5e5e5;
     background: white;
 }
-
-
 
 
 

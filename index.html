@@ -14,11 +14,11 @@
                 <h1>Etch-A-Sketch</h1>
                 <p class="subtitle">Have Fun!</p>
             </div>
-            <div class="etch-container">
-                
+            <div class="etch-container">   
 
             </div>
             <button class="btn reset">Reset grid</button>
+            <button class="btn reset">Create custom grid</button>
         </main>
         <footer>
             <p>Developed by:</p><a href="#" target="_blank">Daniel J</a>
@@ -28,14 +28,16 @@
 
     
         <script>
+
             // creating a grid for our game
             const etchContainer = document.querySelector('.etch-container');
-            const gridSize = 20;
+            let gridSize = 10;
 
             function createGrid() {
                 for (let i = 0; i < gridSize*gridSize; i++) {                    
                     const square = document.createElement('div');
                     square.classList.add('square');
+                    square.setAttribute('id', `sqnumber${i}`);
                     square.style.flex = `1 1 ${100/gridSize}%`;         
                     etchContainer.appendChild(square);
                 }
@@ -47,11 +49,37 @@
                 squares.forEach(element => {                   
                    element.setAttribute('style', `height: ${squareHeight}px; flex: 1 1 ${100/gridSize}%;`);
                 });
-            }
-            
+            }        
 
             createGrid();
             setHeight();
+
+            // creating a function that changes the color of each square
+
+            function changeColor(id) { 
+                // retrieving this again to keep the grid height and width               
+                const squareHeight = document.querySelector('.square').offsetWidth;                
+                squares = document.querySelectorAll('.square');
+
+                const selectedSquare = document.querySelector(`#${id}`);
+                let backgroundColor = `${randomRGB()}, ${randomRGB()}, ${randomRGB()}, 1`;
+                selectedSquare.setAttribute('style', `height: ${squareHeight}px; flex: 1 1 ${100/gridSize}%; background: rgba(${backgroundColor});`);
+                //selectedSquare.classList.add('hovered');
+            }
+
+            function randomRGB () {
+                return Math.floor(Math.random()*255);
+            }
+
+            // adding events listeners to add changes for when the user hovers over the squares
+            
+            const square = document.querySelectorAll('.square');
+            square.forEach(element => {
+            
+                element.addEventListener('mouseenter', () => {
+                    changeColor(element.getAttribute('id'));
+                });
+            })
 
         </script>
     </body>
